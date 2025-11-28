@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ro'yxatdan o'tish — Kitob Do'koni</title>
+
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsQkPjz8WcJ6tYtFfJ0zYtP5d3FZ6bFEl5hkB8l+lw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+      
+  <style>
+    /* Oddiy, zamonaviy styling */
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --accent:#0b63d6;
+      --muted:#6b7280;
+      --danger:#e53e3e;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, #eef6ff 0%, var(--bg) 100%);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      color:#111827;
+    }
+    .container{
+      width:100%;
+      max-width:920px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 6px 20px rgba(12, 38, 63, 0.08);
+    }
+
+    /* Left promo */
+    .promo{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .logo{
+      font-weight:700;
+      color:var(--accent);
+      font-size:20px;
+    }
+    .hero-title{
+      font-size:22px;
+      font-weight:700;
+      margin-top:8px;
+    }
+    .hero-desc{
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    /* Form */
+    form{display:flex;flex-direction:column;gap:12px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    textarea,
+    select{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #e6e9ef;
+      border-radius:8px;
+      font-size:15px;
+      outline:none;
+      transition:box-shadow .15s, border-color .15s;
+      background:#fff;
+    }
+    input:focus, textarea:focus, select:focus{
+      box-shadow:0 6px 18px rgba(11,99,214,0.08);
+      border-color:var(--accent);
+    }
+    .small {font-size:13px;color:var(--muted)}
+    .actions{display:flex;align-items:center;justify-content:space-between;margin-top:6px;gap:12px}
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(11,99,214,0.12);
+    }
+    .muted{color:var(--muted);font-size:13px}
+    .terms{display:flex;align-items:center;gap:8px}
+    .error{color:var(--danger);font-size:13px;margin-top:6px}
+    .success{color:green;font-size:13px;margin-top:6px}
+
+    /* password row */
+    .pw-wrap{position:relative}
+    .pw-toggle{
+      position:absolute;
+      right:8px;
+      top:34px;
+      background:transparent;
+      border:none;
+      cursor:pointer;
+      font-size:13px;
+      color:var(--muted);
+      padding:6px;
+    }
+
+    /* Responsive */
+    @media (max-width:880px){
+      .container{grid-template-columns:1fr; padding:8px}
+      .promo{order:2}
+    }
+
+    /* small footer */
+    .footer-note{font-size:13px;color:var(--muted);margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left: Promo / Info -->
+    <div class="card promo" aria-hidden="false">
+      <div class="logo">Kitob Do'koni</div>
+      <div class="hero-title">Ro'yxatdan o'ting — kitoblaringiz kutmoqda</div>
+      <div class="hero-desc">
+        Yangi foydalanuvchilarga chegirma va shaxsiy tavsiyalar. Profil yaratib,
+        istalgan kitobni xarid qilish, buyurtmalarni kuzatish va wish-list saqlang.
+      </div>
+
+      <div style="margin-top:12px" class="small">
+        Foydalanish shartlari va maxfiylik siyosatini qabul qilib ro'yxatdan o'tasiz.
+      </div>
+
+      <div style="margin-top:auto" class="small footer-note">
+        Allaqachon akkauntingiz bormi? <a href="#" style="color:var(--accent);text-decoration:none">Kirish</a>
+      </div>
+    </div>
+
+    <!-- Right: Signup form -->
+    <div class="card" aria-labelledby="signup-heading">
+      <h2 id="signup-heading" style="margin:0 0 8px 0">Ro'yxatdan o'tish</h2>
+      <p class="muted" style="margin:0 0 14px 0">Ro'yxatdan o'tish bepul — faqat bir necha soniya.</p>
+
+      <form id="signupForm" novalidate>
+        <div class="row">
+          <div class="col">
+            <label for="firstName">Ism</label>
+            <input id="firstName" name="firstName" type="text" placeholder="Ismingiz" required />
+          </div>
+          <div class="col">
+            <label for="lastName">Familiya</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Familyangiz" />
+          </div>
+        </div>
+
+        <div>
+          <label for="email">Elektron pochta</label>
+          <input id="email" name="email" type="email" placeholder="example@domain.uz" required />
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="phone">Telefon (ixtiyoriy)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+998 99 123 45 67" />
+          </div>
+          <div class="col">
+            <label for="city">Shahar</label>
+            <input id="city" name="city" type="text" placeholder="Toshkent" />
+          </div>
+        </div>
+
+        <div>
+          <label for="address">Manzil (ixtiyoriy)</label>
+          <input id="address" name="address" type="text" placeholder="Ko'cha, uy, kvartira" />
+        </div>
+
+        <div class="row">
+          <div class="col pw-wrap">
+            <label for="password">Parol</label>
+            <input id="password" name="password" type="password" placeholder="Kamida 8 ta belgi" required minlength="8" />
+            <button type="button" class="pw-toggle" id="togglePw" aria-label="Ko'rsatish">Ko'rsat</button>
+          </div>
+
+          <div class="col">
+            <label for="confirmPassword">Parolni tasdiqlang</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Qayta kiriting" required minlength="8" />
+          </div>
+        </div>
+
+        <div class="terms">
+          <input id="terms" name="terms" type="checkbox" />
+          <label for="terms" style="margin:0">Men <a href="#" style="color:var(--accent);text-decoration:none">foydalanish shartlari</a>ni qabul qilaman</label>
+        </div>
+
+        <div id="formMessage" role="status" aria-live="polite"></div>
+
+        <div class="actions">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button type="submit" class="btn">Ro'yxatdan o'tish</button>
+            <button type="button" class="btn secondary" id="fillDemo">Namuna to'ldirish</button>
+          </div>
+          <div class="muted">Yoki <a href="#" style="color:var(--accent);text-decoration:none">Google</a> bilan davom eting</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Basic client-side validation & interactions
+    const form = document.getElementById('signupForm');
+    const msg = document.getElementById('formMessage');
+    const pw = document.getElementById('password');
+    const cpw = document.getElementById('confirmPassword');
+    const toggle = document.getElementById('togglePw');
+
+    toggle.addEventListener('click', () => {
+      const type = pw.type === 'password' ? 'text' : 'password';
+      pw.type = type;
+      cpw.type = type;
+      toggle.textContent = type === 'password' ? 'Ko\'rsat' : 'Yashirish';
+    });
+
+    document.getElementById('fillDemo').addEventListener('click', () => {
+      document.getElementById('firstName').value = 'Ali';
+      document.getElementById('lastName').value = 'Karimov';
+      document.getElementById('email').value = 'ali@example.uz';
+      document.getElementById('phone').value = '+998901234567';
+      document.getElementById('city').value = 'Toshkent';
+      document.getElementById('password').value = 'Password123';
+      document.getElementById('confirmPassword').value = 'Password123';
+      document.getElementById('terms').checked = true;
+      msg.textContent = '';
+      msg.className = '';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+      msg.className = '';
+
+      // Required fields check
+      const first = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = pw.value;
+      const confirm = cpw.value;
+      const terms = document.getElementById('terms').checked;
+
+      if (!first) return showError('Ismingizni kiriting.');
+      if (!validateEmail(email)) return showError('Yaroqli elektron pochta manzilini kiriting.');
+      if (password.length < 8) return showError('Parol kamida 8 ta belgidan iborat bo\'lishi kerak.');
+      if (password !== confirm) return showError('Parollar mos emas — qayta tekshiring.');
+      if (!terms) return showError('Foydalanish shartlarini qabul qilishingiz kerak.');
+
+      // Agar barchasi yaxshi — bu yerda AJAX/fetch orqali serverga yuborish mumkin.
+      // Mana shunday misol (kommentda) — backend API bo'lsa yo'lni o'zgartiring:
+      /*
+      fetch('/api/register', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          firstName: first,
+          lastName: document.getElementById('lastName').value.trim(),
+          email,
+          phone: document.getElementById('phone').value.trim(),
+          city: document.getElementById('city').value.trim(),
+          address: document.getElementById('address').value.trim(),
+          password
+        })
+      }).then(r=>r.json()).then(data=>{
+        // backend javobiga qarab yo'naltirish yoki xabar ko'rsatish
+      })
+      */
+
+      // Hozircha demo uchun muvaffaqiyat xabari
+      showSuccess('Ro‘yxatdan o‘tish muvaffaqiyatli! (demo)');
+      form.reset();
+    });
+
+    function showError(text){
+      msg.textContent = text;
+      msg.className = 'error';
+    }
+    function showSuccess(text){
+      msg.textContent = text;
+      msg.className = 'success';
+    }
+
+    function validateEmail(email){
+      // oddiy email tekshiruvi
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+  </script>
+</body>
+</html>

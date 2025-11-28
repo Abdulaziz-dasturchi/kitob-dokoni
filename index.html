@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kitob dukoni</title>
+    <link rel="shortcut icon"
+        href="https://thumbs.dreamstime.com/b/open-book-logo-icon-knowledge-education-literature-library-school-384439715.jpg"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+
+            /* 🔥 Yangi gradient fon */
+            background: linear-gradient(135deg, #c3f7dd, #d5e2f1, #abecc4);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .img {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            filter: brightness(0.5);
+            z-index: -1;
+        }
+
+        .box {
+            background-color: aliceblue;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 10px 0;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            z-index: 1000;
+            top: 0;
+
+        }
+
+        .rasm {
+            width: 120px;
+            height: 30px;
+            margin-left: 20px;
+        }
+
+        .search {
+            flex-grow: 0.7;
+            margin-left: 20px;
+            font-size: 14px;
+            border-radius: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            transition: 0.3s all;
+        }
+
+        .box button {
+            font-size: 15px;
+            border: none;
+            background: none;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+
+        .container {
+            display: flex;
+            gap: 10px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Chap tomondagi kategoriya paneli */
+        .boxx {
+            background-color: aliceblue;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 15px 20px;
+            margin-top: 25px;
+            width: 200px;
+            /* panel kengligi */
+            display: flex;
+            flex-direction: column;
+            /* vertikal qator qilish */
+            gap: 10px;
+            /* tugmalar orasini oshirish */
+            height: 100vh;
+            position: sticky;
+            z-index: 1000;
+            top: 75px;
+        }
+
+        .boxx p {
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* O‘ng tomondagi kitoblar jadvali */
+        .boox {
+            flex-grow: 1;
+            /* bo‘sh joyni egallaydi */
+            margin-left: 20px;
+            /* chap paneldan masofa */
+        }
+
+
+        .boxx button {
+            border: 1px solid #000000;
+            padding: 10px 15px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, rgb(255, 255, 255), #ffffff);
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+        }
+
+        .boox {
+            max-width: 1200px;
+            background-color: rgba(240, 248, 255, 0.7);
+            margin: 25px auto;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .boox1 {
+            background-color: #f8fbff;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .boox1:hover {
+            transform: scale(1.03);
+        }
+
+        .boox1 img {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .boox1 h3 {
+            margin: 10px 0 5px;
+            font-size: 17px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .boox1 p {
+            margin: 0;
+            color: #555;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .boox1 .icons button {
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: none;
+            background-color: #1e90ff;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .boox1 .icons button:hover {
+            background-color: #0b75d1;
+            transform: translateY(-2px);
+        }
+
+        .boox1 .icons {
+            justify-content: flex-start;
+            /* tugma chapga yaqin bo‘lsin */
+            gap: 10px;
+            /* tugmalar orasida bo‘shliq */
+            margin-top: 12px;
+        }
+
+        .price {
+            color: rgb(29, 100, 255);
+            font-weight: bold;
+            margin-top: 5px;
+            pointer-events: none;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            font-size: 18px;
+            pointer-events: auto;
+        }
+
+        .icons span {
+            cursor: pointer;
+        }
+
+        .heart {
+            color: black;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+
+        .heart.active {
+            color: red;
+        }
+
+        .cart {
+            color: black;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+
+        .cart.added {
+            color: green;
+        }
+
+        /* MODAL */
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #modalContent {
+            width: 600px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            animation: show 0.3s ease;
+            display: flex;
+            gap: 20px;
+            box-sizing: border-box;
+            position: relative;
+            flex-direction: row;
+        }
+
+        #modalContent img {
+            width: 250px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        #modalDetails {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #modalDetails h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        #modalFacts {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 10px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        #modalFacts p {
+            margin: 5px 0;
+        }
+
+        #modalButtons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        #modalButtons button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        #modalButtons button.orderBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #modalButtons button.orderBtn:hover {
+            background-color: #218838;
+        }
+
+        #modalButtons button.closeBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #modalButtons button.closeBtn:hover {
+            background-color: #c82333;
+        }
+
+        @keyframes show {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Notification panel */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            opacity: 0.95;
+            z-index: 9999;
+        }
+
+        /* Sevimli va Savat ro'yxati uchun modal */
+        #listModal {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            max-height: 70vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+            z-index: 1100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #listModal h2 {
+            margin-top: 0;
+        }
+
+        #listModal ul {
+            list-style: none;
+            padding-left: 0;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        #listModal ul li {
+            padding: 8px 5px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #listModal ul li span {
+            flex-grow: 1;
+            margin-right: 10px;
+            cursor: default;
+        }
+
+        #listModal ul li button {
+            margin-left: 5px;
+            padding: 5px 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        #modalContent {
+            width: 700px;
+            max-width: 90%;
+            background: linear-gradient(to bottom right, #f0f4ff, #e0e8ff);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            gap: 25px;
+            flex-direction: row;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+            position: relative;
+            animation: show 0.3s ease;
+        }
+
+        #modalContent img {
+            width: 280px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #modalDetails {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #modalDetails h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a40;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 8px;
+        }
+
+        #modalFacts {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 12px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        #modalButtons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        #modalButtons button {
+            padding: 12px 25px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #modalButtons button.orderBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #modalButtons button.orderBtn:hover {
+            background-color: #45a049;
+        }
+
+        #modalButtons button.closeBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #modalButtons button.closeBtn:hover {
+            background-color: #e53935;
+        }
+
+
+        #listModal ul li button.removeBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #listModal ul li button.orderBtn {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        #listModal button.closeList {
+            margin-top: 15px;
+            padding: 8px 15px;
+            border: none;
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Buyurtma berish modali */
+        #orderModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1200;
+        }
+
+        #orderModalContent {
+            background: white;
+            width: 400px;
+            border-radius: 15px;
+            padding: 30px 30px 25px 30px;
+            box-sizing: border-box;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #orderModalContent h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            color: #333;
+            user-select: none;
+        }
+
+        #orderModalContent label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: 600;
+            color: #555;
+            user-select: none;
+        }
+
+        #orderModalContent input,
+        #orderModalContent textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        #orderModalContent input:focus,
+        #orderModalContent textarea:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        #orderModalContent textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        #orderModalContent button[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #orderModalContent button[type="submit"]:hover {
+            background: #1e7e34;
+        }
+
+        /* Yopish tugmasi (X) */
+        #orderCloseBtn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 1;
+            text-align: center;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        #orderCloseBtn:hover {
+            background: #a71d2a;
+        }
+
+        /* Orders (admin/user) modal */
+        #ordersModal {
+            position: fixed;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+            z-index: 1300;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #ordersList {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        #ordersList li {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .order-meta {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .order-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .boox {
+                grid-template-columns: repeat(1, 1fr);
+                width: 94%;
+            }
+
+            #modalContent {
+                width: 90%;
+                height: auto;
+                flex-direction: column;
+            }
+
+            #modalContent img {
+                width: 100%;
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="box">
+        <img class="rasm" src="photo_2025-10-31_15-24-22 (2).jpg" alt="" />
+        <input class="search" id="searchInput" type="search" placeholder="🔍 search by title, author or category..." />
+        <div style="display:flex; align-items:center;">
+            <a href="register.html"> <button><i class="fa-regular fa-user"></i><i class="bi bi-person"></i> kirish</button></a>
+            <button id="favoritesBtn">❤️ Sevimli(0)</button>
+            <button id="cartBtn">🛒 Savat(0)</button>
+            <button id="ordersBtn">📦 Buyurtmalar</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="boxx">
+            <p>MENU</p>
+            <button onclick="filterCategory('all')">barchasi</button>
+            <button onclick="filterCategory('roman')">roman</button>
+            <button onclick="filterCategory('biznes')">biznes</button>
+            <button onclick="filterCategory('psixologiya')">psixologiya</button>
+            <button onclick="filterCategory('ilmiy')">ilmiy</button>
+            <button onclick="filterCategory('tarix')">tarix</button>
+            <button onclick="filterCategory('bolalar')">bolalar</button>
+        </div>
+
+        <div class="boox" id="books"></div>
+    </div>
+
+    <!-- Kitob haqida modal -->
+    <div id="modal">
+        <div id="modalContent"></div>
+    </div>
+
+    <!-- Sevimli va Savat ro'yxati uchun modal -->
+    <div id="listModal">
+        <h2 id="listModalTitle"></h2>
+        <ul id="listModalContent"></ul>
+        <button class="closeList" onclick="closeListModal()">Yopish</button>
+    </div>
+
+    <!-- Buyurtma berish modal -->
+    <div id="orderModal">
+        <div id="orderModalContent">
+            <button id="orderCloseBtn" title="Yopish">&times;</button>
+            <h2>Buyurtma berish</h2>
+            <form id="orderForm">
+                <label>Kitob nomi:</label>
+                <input type="text" id="orderBookName" name="bookName" readonly />
+
+                <label>Narxi:</label>
+                <input type="text" id="orderBookPrice" name="bookPrice" readonly />
+
+                <label>Ismingiz:</label>
+                <input type="text" name="customerName" required />
+
+                <label>Telefon:</label>
+                <input type="tel" id="customerPhone" name="customerPhone" required pattern="^\+?\d{9,15}$"
+                    placeholder="+998901234567" />
+
+                <label>Manzil:</label>
+                <textarea name="customerAddress" rows="3" required></textarea>
+
+                <button type="submit">Buyurtma berish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Buyurtmalar modal -->
+    <div id="ordersModal">
+        <h2 style="margin-top:0;">Buyurtmalar ro'yxati</h2>
+        <ul id="ordersList"></ul>
+        <div style="margin-top:12px; display:flex; gap:8px;">
+            <button class="btn-small" id="closeOrdersBtn">Yopish</button>
+            <button class="btn-small btn-danger" id="clearOrdersBtn">Hammasini o'chirish</button>
+        </div>
+    </div>
+
+    <script>
+        // --- MA'lumotlar va boshlang'ich holat ---
+        const categories = ["bolalar", "roman", "biznes", "psixologiya", "ilmiy", "tarix"];
+        const books = [];
+        const favoritesSet = new Set();
+        const cartSet = new Set();
+        let favoritesCount = 0;
+        let cartCount = 0;
+
+        function generateFacts(n) {
+            let text = "";
+            for (let i = 1; i <= 30; i++) {
+                text += `<p>Ma'lumot ${i}: Fakt ${n}.${i}</p>`;
+            }
+            return text;
+        }
+
+        const bookTitles = {
+            bolalar: [
+                "Sehrli Qalam", "Oq Qushcha", "Do'stlar Sarguzashtlari", "Shirin Tilaklar", "Yulduzcha va Daryo",
+                "Qo'ng'ir Mushuk", "Kichik Ajdarho", "O'yinchoq Do'kon", "Bahor Bayrami", "Sehrli Daraxt",
+                "Kichik Sehrgar", "Qishki Sayohat", "Do'stlik Rishtasi", "Yorqin Orzular", "Oltin Qush",
+                "Sarguzashtlar Sayohati", "Sehrli Tuzuk", "Kichik Daryo", "Bahor Shamoli", "Quvonchli Kunlar"
+            ],
+            roman: [
+                "Uyg'onish", "Tong Sohili", "Qaytish Yo'li", "Sirli Qadamlar", "O'tmish Soqchisi",
+                "Yolg'onlar Olamida", "Ishqning Nuri", "Yulduzlar Ostida", "Qora Qalam", "Tongning Sirlari",
+                "Shom Sohili", "O‘tmish Yodgorliklari", "Sevgi Hikoyalari", "Qutqaruvchi", "So‘nggi Bahor",
+                "Xayolotdagi Sayohat", "Bahor Sirlari", "Olovli Yurak", "Yaqin Do'st", "Iztirob Qalbi"
+            ],
+            biznes: [
+                "Boylik Sirlari", "Muvaffaqiyat Yo'li", "Investitsiya Asoslari", "Raqamli Biznes", "Tadbirkorning Qo'llanmasi",
+                "Marketing Olami", "Menejment Sirlarini O'rganish", "Pulni Boshqarish", "Liderlik Sanoati", "Ishbilarmonlik Strategiyalari",
+                "Startap Yo'li", "Biznes Psixologiyasi", "Moliyaviy Erkinlik", "Sarmoya Tahlili", "Innovatsiya Kaliti",
+                "Kompaniya Qonunlari", "Mijozlar bilan Ishlash", "Brendni Qurish", "Tadbirkorlik Rivoji", "Muvaffaqiyat Hikoyalari"
+            ],
+            psixologiya: [
+                "O'zini Anglash", "Stress Bilan Kurashish", "Motivatsiya Kuchlari", "Inson Munosabatlari", "Qiyinchiliklarni Yengish",
+                "Emotsional Intellekt", "Hayotdagi Maqsad", "Ijtimoiy Psixologiya", "Ruhiy Salomatlik", "Xotira Sirlarini O'rganish",
+                "Psixologik Maslahatlar", "Qobiliyatlarni Rivojlantirish", "O'zini Tashkil Qilish", "Yaxshi Odoblar", "O'zini Rag'batlantirish",
+                "Munosabatlarni Mustahkamlash", "Stressni Boshqarish", "Hayotdagi O'zgarishlar", "Ijtimoiy Ta'sirlar", "Xulq-atvor Tahlili"
+            ],
+            ilmiy: [
+                "Biologiya Asoslari", "Kimyo Dunyo", "Fizika Qonunlari", "Astronomiya Kaliti", "Matematika Sirlarini O‘rganish",
+                "Geologiya Asoslari", "Neyrologiya", "Molekulyar Fan", "Eksperimentlar Tarixi", "Ilmiy Tadqiqotlar",
+                "Robototexnika", "Sun'iy Intellekt", "Ekologiya Muammolari", "Kvant Mexanikasi", "Genetika",
+                "Nanotexnologiyalar", "Ilmiy Karyera"
+            ],
+            tarix: [
+                "Oltin Asr", "Qadimiy Davr", "Buyuk Ipak Yo'li", "Urushlar Tarixi", "Madaniyatlar To‘qnashuvi",
+                "Davlatlar Tarixi", "Revolyutsiya", "Imperiyalar", "Milliy Qahramonlar", "Siyosiy O'zgarishlar",
+                "Din Tarixi", "Qadimiy San'at", "Kashfiyotlar Tarixi", "Yangi Dunyo", "Tarixiy Dokumentlar",
+                "Arxeologiya", "O‘tgan Asrlar", "Tarixiy Konfliktlar", "Madaniyatlar Tarixi", "Etno Tarix"
+            ]
+        };
+
+        function generateBooks() {
+            const arr = [];
+            let id = 1;
+            categories.forEach(category => {
+                const titles = bookTitles[category];
+                titles.forEach(title => {
+                    arr.push({
+                        id: id++,
+                        title,
+                        author: "Muallif Ismi",
+                        price: Math.floor(Math.random() * 100000) + 10000,
+                        category,
+                        img: `https://source.unsplash.com/featured/?book,${encodeURIComponent(title)}`,
+                        facts: generateFacts(id)
+                    });
+                });
+            });
+            return arr;
+        }
+        function generateBooks() {
+            const arr = [];
+            let id = 1;
+
+            // Har bir kitobga alohida rasm URL’lari
+            const bookImages = {
+                bolalar: [
+                    "https://images.uzum.uz/cvlhafmi4n35928klii0/original.jpg",
+                    "https://images.uzum.uz/ctnh44ei4n324lr1fc1g/original.jpg",
+                    "https://images.uzum.uz/ctnh44ei4n324lr1fc20/original.jpg",
+                    "https://images.uzum.uz/ctnh44ei4n324lr1fc30/original.jpg",
+                    "https://images.uzum.uz/ctkhfc6i4n368aad4oe0/original.jpg",
+                    "https://images.uzum.uz/ctijcolht56qpot7l7s0/original.jpg",
+                    "https://images.uzum.uz/cvlhaflpb7f8td1j43ng/original.jpg",
+                    "https://images.uzum.uz/ctlb7f5ht56qpot8fhcg/original.jpg",
+                    "https://images.uzum.uz/cvlhafk7fd1p445qj4cg/original.jpg",
+                    "https://images.uzum.uz/cvlhafmi4n35928kliig/original.jpg",
+                    "https://cdn-img.birbir.uz/i/400x400-fit/files/1e/bc/aac99be7a01c5225e43fc09fc340.jpg",
+                    "https://cdn-img.birbir.uz/i/400x400-fit/files/26/c0/e16f16c9ab8675ca136fe63130a8.jpg",
+                    "https://hilolnashr.uz/image/cache/catalog/001-Kitoblar/003_boshqalar/003_bolalar/2023/bolalar%20uchun%20kitob-550x550h.jpg",
+                    "https://hilolnashr.uz/image/cache/catalog/bolalar/bolalar-uchun-1-500x750.jpg",
+                    "https://gglit.uz/wp-content/uploads/2023/08/photo_2023-08-18_15-48-45-500x380.jpg",
+                    "https://images.uzum.uz/cmc44e3ifoubkc6n3r4g/original.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7ecg7dIXhyQh78Xa31gbRU636yN4pSzXZLA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2zXlvhmeow1LvcgQskkVQM1ph-GNEQQZQlQ&s",
+                    "https://images.uzum.uz/d1185h27s4fq7e8ua10g/feedback_40.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRW3eVSbjcJQwEQxixGxNZF1XSvUFSe3XaCw&s"
+                ],
+                roman: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg17yvL77cji7v2_2vafG2Kz4x4hQ4LfcYIw&s",
+                    "https://images.uzum.uz/csmvhcb4nkdp9ake7h5g/original.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG0DmBYUEqQWBxaScVcPpB4jIZlfx-1UD4zQ&s",
+                    "https://images.uzum.uz/d09oj0uf4hvqhbr4ej50/original.jpg",
+                    "https://100k.website.yandexcloud.net/resized/1000x1000/products/images/n10EwQ0L2cOehbH3hjkCMIOsmuIhbeN6j3lXTOBS.jpg.webp",
+                    "https://images.uzum.uz/ct3b1r5pb7f3jk80sk1g/original.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBhxNT243lWhfRCwayIFg_7T3Npb11oMVQlg&s",
+                    "https://assets.asaxiy.uz/product/main_image/mobile/67a0a843982a0.jpg.webp",
+                    "https://frankfurt.apollo.olxcdn.com/v1/files/dd0dlfd3a30w3-UZ/image;s=780x1040",
+                    "https://assets.asaxiy.uz/product/items/desktop/f81bcc2b525d17e2c707690f10087b3e2025051614502934916ar7Qf0tJtX.png.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK2mbHJmilF067Z6FBK3bWMQrQdRNWXWtPcA&s",
+                    "https://yoshlarovozi.uz/uploads/news/8dd90c8af37b443f0e776848991fd209.jpg",
+                    "https://frankfurt.apollo.olxcdn.com/v1/files/5rpz607pop4t3-UZ/image;s=1280x853",
+                    "https://backend.book.uz/user-api/img/img-file-29a892e8142c8948fd1bc971cf7bb92b.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXYGKKt82Q0xtfeBJ_uAGod3VOX9gwxLz7NA&s",
+                    "https://www.gazeta.uz/media/img/2021/09/NB1Ck416314669313718_l.jpg",
+                    "https://assets.asaxiy.uz/product/items/desktop/9474e82ea67dda8f13ede0dc36e1d2ae2024030910233652418FuIrv4tYiY.jpg.webp",
+                    "https://images.uzum.uz/ctvsh745j42bjc47cge0/original.jpg",
+                    "https://images.uzum.uz/cjga644jvf2q9si9ek2g/t_product_low.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaWI5phM6VIbFsQiCg08DrhBPUaOIyNfclw&s"
+                ],
+                biznes: [
+                    "https://frankfurt.apollo.olxcdn.com/v1/files/jgkjxrs4toho2-UZ/image;s=651x1156",
+                    "https://assets.asaxiy.uz/product/items/desktop/60792d855cd8a912a97711f91a1f155c20220324180311791226jZEv4bo2s.jpg.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpuFLAdUi_whbtdeWVs03o8WT28T4u_vOE3A&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPxz4Y6Q6EM5NpCRABzrNAEFqz1BnTSyq67Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZe8lAqC8wUOsv3yZimbXiLt_Vt0HY1KqkSA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk6G346EBy0WVaVAb47OdEsYzAxBd8fSjPpw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRePAzUdbAs_f7kZ8E-Hf4mVUxGFgJ15KQp_A&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9C6Ms4CP5v6Q3E_qm2pp0NCnuj5P-aU44oQ&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz1ja0BGaag8TkKTWYS05tXoNwBsvcWI_nrw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTYEXYkR5yPMasx9rDFjyj5sou7KoyWXBMBA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqXq9p2qeHCgz9xj7NH4m7sBIIqYGhpw7wSg&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4gGfb6k_3jaGIEdbjjhFHf81dz7-4PWWdJA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwFKxNq68KTP6hSc_8_LyateVZVgkfXL4uA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQJa4erJXTtuxK21jk5fNwzZlbp8xge3DXzw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcOsn4Hc65mLLMokmdKPKUW2Ez4o-fcng86w&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT47EmfQbauY55J-zajcGjkE9moZvIdZiumyw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTSXIRdk_3VXSuPDEzTjtgampvAO5HlNGDPQ&s",
+                    "https://www.afisha.uz/uploads/media/2025/01/33894a892d243156bed305480e33acc2_lf.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVR2hNZkfjkSnjzEoGl7GZcaLvCVw1v0RHMg&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-YDGDEU3Ns-3-U8-TJXyqBL37uXMVOvPQAA&s"
+                ],
+                psixologiya: [
+                    "https://backend.book.uz/user-api/img/img-file-3057bf093b08c1be92c974d247f84a88.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPydh-B9nQXD5UjI3ovUpYV3OiIq-W7-Nl6w&s",
+                    "https://images.uzum.uz/cs3ulsk0u44g6jorgasg/original.jpg",
+                    "https://images.uzum.uz/d3158m7iub35i07kigc0/t_product_540_high.jpg",
+                    "https://images.uzum.uz/cgm481ng49devoacld0g/original.jpg",
+                    "https://images.uzum.uz/d0bjq3t4b5n4bessv0ug/t_product_540_high.jpg",
+                    "https://toping.uz/storage/images/fvE4IiDJZ4oNx87h7YG43M92iixANUST.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRomEYeEV9FVDA4iTyGXI04IyU5POY4WLj4sw&s",
+                    "https://toping.uz/storage/images/Zi5XfYeRt8I9BBM0qyOFtmpbtdVHqU6S.webp",
+                    "https://toping.uz/storage/articles_sm/515/KA0KxkAfRTOLUuIjpgHEoBO19MDY3BFp.webp",
+                    "https://toping.uz/storage/images/vSNwyovDrDzUS3FlAhZoU1SatolaV5oH.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG2Pv8p5MIKrwVoQYUwYFie846ao01KJzuug&s",
+                    "https://images.uzum.uz/d0bjq3tpb7f4kq791e30/t_product_540_high.jpg",
+                    "https://images.uzum.uz/d10q8bon274lpu38a64g/t_product_540_high.jpg",
+                    "https://images.uzum.uz/cs3uluri153t30up860g/original.jpg",
+                    "https://cdn.asaxiy.uz/asaxiy-content/product/items/mobile/66be31e4c40d676991f2405aaecc69342024081709553774422yY27yLq7zX.jpg",
+                    "https://images.uzum.uz/cgm47fj57mg9720dnd1g/t_product_low.jpg",
+                    "https://cdn.asaxiy.uz/asaxiy-content/product/items/mobile/fc6709bfdf0572f183c1a84ce5276e962024081709553955231frfgJHYtPl.jpg",
+                    "https://cdn.asaxiy.uz/asaxiy-content/product/items/mobile/273abeb43c990100f96055214c6b9e1e2023081211154179788gYwx4gEXLQ.jpg",
+                    "https://cdn.asaxiy.uz/asaxiy-content/product/items/mobile/aedbee22519c7a8265dc41e03b045c1820250227224026911635piq7XfUOh.webp"
+                ],
+                ilmiy: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgWPKo8zbTuJTyxJ2e_XyifWfQVkKj9GdfBA&s",
+                    "https://hilolnashr.uz/image/cache/catalog/Quron_ilmlari_web-550x550h.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdqcOmeZzhGKUUvRnxtblK58OnWHteLpxA5g&s",
+                    "https://images.uzum.uz/cs9rt8j4nkdhfdv5h5e0/original.jpg",
+                    "https://akademnashr.uz/wp-content/uploads/2023/11/antiqa-fizika-2.jpg",
+                    "https://akademnashr.uz/wp-content/uploads/2023/09/Nazar-Eshonqul-Kitob-bandasi.jpg",
+                    "https://images.uzum.uz/cs9rt8j4nkdhfdv5h5dg/original.jpg",
+                    "https://akademnashr.uz/wp-content/uploads/2023/09/mukammal-xotira-1.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBwtHNF_biPIwKfQVp9E_fhVRz3k_s56tOZg&s",
+                    "https://akademnashr.uz/wp-content/uploads/2023/04/kitob-haqida-kitob.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIYHDMWzm5PdvW2mM6pFK3EkCE1mltVY-DYw&s",
+                    "https://cdn.asaxiy.uz/asaxiy-content/product/items/mobile/70efdf2ec9b086079795c442636b55fb2022062310151758737KbzMfQdrx8.jpg.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsOPtnRbFizb-uLFlbYZFwdCuZc2VGviuqEg&s",
+                    "https://images.uzum.uz/d2n8ejviub35i07i21cg/original.jpg",
+                    "https://akademnashr.uz/wp-content/uploads/2023/09/ismoil-gasprali-dorur-rohat-1.jpg",
+                    "https://akademnashr.uz/wp-content/uploads/2023/09/Ulugbek-Sharipov-Asl-otalar-kitobi-2.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0r_xNQWKg7KBJL5oB3QO__R-u7MfSYgdxw&s"
+                ],
+                tarix: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK2Dd2-WJhkypUIGJSzeZ4WWhVIMD-CYA8lg&s",
+                    "https://backend.book.uz/user-api/img/img-file-edf178b153777546ba888ea888b1d0c9.jpg",
+                    "https://hilolnashr.uz/image/cache/catalog/boshqa-kitoblar/TARIX-ENG-YANGI-SAVOL-JAVOBLAR-550x550h.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvijgYMBjKhwvCODaqaCmZJrDr_WjbzNjSpg&s",
+                    "https://kitobxon.com/img_knigi/5109.jpg",
+                    "https://kitobxon.com/img_knigi/5250.jpg",
+                    "https://lh5.googleusercontent.com/proxy/gynw2kiE5JEls5atMomIlifSTt_X-takOcPE52LxdGyCPeP47VL9I1IYuGTs-reuLboE4cXNqqWFnOdTOJD80UMmJJaVhtVWd1w_6iFBgxwTsfi9TPyTH2KQ3VzcWbM8oi_jl_NKAnUBgXQBOjuBZYgiFK8Z9518ek-apjk94FY",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9wxZkjBtZ1sYw3xb0YSUGHDzeYXqxFnvSuQ&s",
+                    "https://akbt.urspi.uz/storage/books/face/images/2_6528d5a4ceb86_1697174948.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyc8m6zJxfHz0ZXmDSK-72H6Evn8gcGKoKQ&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2whs9GkxOsUJxYr_TUnw_aB_1R_THz0-osA&s",
+                    "https://arm.tipu.uz/uploads/posts/2025-06/1749895635_ozbekiston-tarixi-1-kitob.jpg",
+                    "https://e-library.sammu.uz/books/image/1650626290.jpg",
+                    "https://lh5.googleusercontent.com/proxy/ZFCa0NGMc-iqZxoVMsDdofOUaOU4VLDfMGDoC6VRs-RgrpPEb70LMZcG7zMoMXDv7fn86yZ70Dn31upLY3an5e2Ssh540-1hHWjesFj62CAkQAEKtgs",
+                    "https://images.uzum.uz/cotpl9ffrr80f2gkb0f0/t_product_low.jpg",
+                    "https://kitobxon.com/img_knigi/5747.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ0c_B_iFCXkl68LI4CaV_lw0_6JObMCzWDQ&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpsfalJ43kWPQYT9AT_Jcl8QeaMCnC1Y_F6g&s",
+                    "https://indep.uz/wp-content/uploads/2024/05/1-11.jpg",
+                    "https://images.uzum.uz/d01ovos7fd1p445teerg/original.jpg"
+                ]
+            };
+
+            categories.forEach(category => {
+                const titles = bookTitles[category];
+                titles.forEach((title, index) => {
+                    arr.push({
+                        id: id++,
+                        title,
+                        author: "Muallif Ismi",
+                        price: Math.floor(Math.random() * 100000) + 10000,
+                        category,
+                        img: bookImages[category][index] || "https://via.placeholder.com/300x180?text=Book",
+                        facts: generateFacts(id)
+                    });
+                });
+            });
+
+            return arr;
+        }
+
+
+
+
+        books.push(...generateBooks());
+
+        // DOM elementlari
+        const booksContainer = document.getElementById("books");
+        const favoritesBtn = document.getElementById("favoritesBtn");
+        const cartBtn = document.getElementById("cartBtn");
+        const ordersBtn = document.getElementById("ordersBtn");
+        const modal = document.getElementById("modal");
+        const modalContent = document.getElementById("modalContent");
+        const searchInput = document.getElementById("searchInput");
+        const listModal = document.getElementById("listModal");
+        const listModalTitle = document.getElementById("listModalTitle");
+        const listModalContent = document.getElementById("listModalContent");
+        const orderModal = document.getElementById("orderModal");
+        const orderModalContent = document.getElementById("orderModalContent");
+        const orderForm = document.getElementById("orderForm");
+        const orderBookName = document.getElementById("orderBookName");
+        const orderBookPrice = document.getElementById("orderBookPrice");
+        const orderCloseBtn = document.getElementById("orderCloseBtn");
+        const ordersModal = document.getElementById("ordersModal");
+        const ordersList = document.getElementById("ordersList");
+        const closeOrdersBtn = document.getElementById("closeOrdersBtn");
+        const clearOrdersBtn = document.getElementById("clearOrdersBtn");
+
+        let currentCategory = "all";
+
+        // localStorage yordamida buyurtmalarni saqlash
+        function loadOrdersFromStorage() {
+            try {
+                const s = localStorage.getItem("orders_v1");
+                return s ? JSON.parse(s) : [];
+            } catch (e) {
+                console.error("orders parse error", e);
+                return [];
+            }
+        }
+
+        function saveOrdersToStorage(orders) {
+            localStorage.setItem("orders_v1", JSON.stringify(orders));
+        }
+
+        // Buyurtma qo'shish
+        function addOrder(order) {
+            const orders = loadOrdersFromStorage();
+            order.id = Date.now(); // oddiy unikal id
+            orders.unshift(order); // oxirgi yuqoriga
+            saveOrdersToStorage(orders);
+        }
+
+        function updateCounters() {
+            favoritesCount = favoritesSet.size;
+            cartCount = cartSet.size;
+            favoritesBtn.textContent = `❤️ Sevimli(${favoritesCount})`;
+            cartBtn.textContent = `🛒 Savat(${cartCount})`;
+        }
+
+        // Yadro: renderBooks — qidiruvni title, author va category bo'yicha tekshiradi
+        function renderBooks() {
+            booksContainer.innerHTML = "";
+            let filtered = books;
+
+            if (currentCategory !== "all") {
+                filtered = filtered.filter(book => book.category === currentCategory);
+            }
+
+            const searchTerm = (searchInput.value || "").trim().toLowerCase();
+            if (searchTerm) {
+                // so'rovni so'zlarga bo'lib, har bir so'zni barcha maydonlarda tekshiramiz
+                const parts = searchTerm.split(/\s+/).filter(Boolean);
+                filtered = filtered.filter(book => {
+                    const hay = [
+                        book.title.toLowerCase(),
+                        (book.author || "").toLowerCase(),
+                        (book.category || "").toLowerCase()
+                    ].join(" ");
+                    // barcha so'zlar hay ichida mavjud bo'lishi kerak
+                    return parts.every(p => hay.includes(p));
+                });
+            }
+
+            filtered.forEach(book => {
+                const div = document.createElement("div");
+                div.classList.add("boox1");
+
+                const imgSrc = book.img ? book.img : 'https://via.placeholder.com/300x180?text=Book';
+
+                div.innerHTML = `
+                    <img src="${imgSrc}" alt="${escapeHtml(book.title)}" />
+                    <h3>${escapeHtml(book.title)}</h3>
+                    <p>Muallif: ${escapeHtml(book.author)}</p>
+                    <p class="price">${book.price.toLocaleString()} so'm</p>
+                    <div class="icons">
+                        <span class="heart ${favoritesSet.has(book.id) ? "active" : ""}" onclick="toggleFavorite(${book.id}, this)">
+                            ${favoritesSet.has(book.id) ? "❤️" : "🤍"}
+                        </span>
+                        <span class="cart ${cartSet.has(book.id) ? "added" : ""}" onclick="toggleCart(${book.id}, this)"><i class="bi bi-cart2"></i></span>
+
+                        <button onclick="showBookModal(${book.id})">Ma'lumot</button>
+                    </div>
+                `;
+                booksContainer.appendChild(div);
+            });
+
+            // agar hech narsa topilmasa, xabar ko'rsatish
+            if (filtered.length === 0) {
+                const empty = document.createElement("div");
+                empty.style.gridColumn = "1 / -1";
+                empty.style.textAlign = "center";
+                empty.style.padding = "40px 10px";
+                empty.style.color = "#333";
+                empty.style.fontWeight = "700";
+                empty.style.background = "rgba(255,255,255,0.6)";
+                empty.style.borderRadius = "12px";
+                empty.textContent = "Hech nima topilmadi.";
+                booksContainer.appendChild(empty);
+            }
+        }
+
+        // Xavfsiz chiqarish
+        function escapeHtml(text) {
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Favorit va Cart funksiyalari
+        function toggleFavorite(id, el) {
+            if (favoritesSet.has(id)) {
+                favoritesSet.delete(id);
+                el.classList.remove("active");
+                el.textContent = "🤍";
+            } else {
+                favoritesSet.add(id);
+                el.classList.add("active");
+                el.textContent = "❤️";
+            }
+            updateCounters();
+        }
+
+        function toggleCart(id, el) {
+            if (cartSet.has(id)) {
+                cartSet.delete(id);
+                el.classList.remove("added");
+            } else {
+                cartSet.add(id);
+                el.classList.add("added");
+            }
+            updateCounters();
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            // category tanlanganda qidiruvni o'zgartirmaymiz — boshqa filter bilan birga ishlaydi
+            renderBooks();
+        }
+
+        // Kitob modalini ko'rsatish
+        function showBookModal(id) {
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+            modalContent.innerHTML = `
+                <img src="${book.img}" alt="${escapeHtml(book.title)}" />
+                <div id="modalDetails">
+                    <h2>${escapeHtml(book.title)}</h2>
+                    <div id="modalFacts">${book.facts}</div>
+                    <div id="modalButtons">
+                        <button class="orderBtn" onclick="openOrderModal('${escapeJs(book.title)}', ${book.price})">Buyurtma berish</button>
+                        <button class="closeBtn" onclick="closeModal()">Yopish</button>
+                    </div>
+                </div>
+            `;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // orderModal ni ochish: kitob nomi va narxni to'ldiradi
+        function openOrderModal(bookName, bookPrice) {
+            orderModal.style.display = "flex";
+            orderBookName.value = bookName;
+            if (typeof bookPrice === "number") {
+                orderBookPrice.value = bookPrice.toLocaleString() + " so'm";
+                orderBookPrice.dataset.raw = String(bookPrice);
+            } else {
+                const onlyDigits = String(bookPrice).replace(/\D/g, "");
+                orderBookPrice.value = (onlyDigits ? Number(onlyDigits).toLocaleString() + " so'm" : bookPrice);
+                orderBookPrice.dataset.raw = onlyDigits || bookPrice;
+            }
+        }
+
+        function closeOrderModal() {
+            orderModal.style.display = "none";
+            orderForm.reset();
+            orderBookName.value = "";
+            orderBookPrice.value = "";
+            delete orderBookPrice.dataset.raw;
+        }
+
+        // orderForm submit - bu yerda asosiy ish bajariladi
+        orderForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const customerName = form.customerName.value.trim();
+            const customerPhone = form.customerPhone.value.trim();
+            const customerAddress = form.customerAddress.value.trim();
+            const bookName = form.bookName.value.trim();
+            const bookPriceRaw = orderBookPrice.dataset.raw || (form.bookPrice ? form.bookPrice.value : "");
+
+            const phoneRegex = /^\+?\d{9,15}$/;
+            if (!phoneRegex.test(customerPhone)) {
+                showNotification("Telefon formati xato. +998901234567 kabi kiriting.");
+                return;
+            }
+
+            const order = {
+                bookName,
+                bookPrice: Number(String(bookPriceRaw).replace(/\D/g, "")) || 0,
+                customerName,
+                customerPhone,
+                customerAddress,
+                createdAt: new Date().toISOString()
+            };
+
+            addOrder(order);
+
+            const bookObj = books.find(b => b.title === bookName);
+            if (bookObj && cartSet.has(bookObj.id)) {
+                cartSet.delete(bookObj.id);
+                showNotification("Kitob savatdan o'chirildi va buyurtma qabul qilindi.");
+            } else {
+                showNotification("Buyurtmangiz qabul qilindi. Rahmat!");
+            }
+            updateCounters();
+            renderBooks();
+            closeOrderModal();
+            console.log("Yangi buyurtma:", order);
+        });
+
+        // modal yopishlar va klik eventlar
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        listModal.addEventListener("click", (e) => {
+            if (e.target === listModal) closeListModal();
+        });
+
+        orderModal.addEventListener("click", (e) => {
+            if (e.target === orderModal) closeOrderModal();
+        });
+
+        orderCloseBtn.addEventListener("click", closeOrderModal);
+
+        // Sevimli va savat modali
+        favoritesBtn.addEventListener("click", () => openListModal("favorites"));
+        cartBtn.addEventListener("click", () => openListModal("cart"));
+
+        function openListModal(type) {
+            listModal.style.display = "block";
+            listModalContent.innerHTML = "";
+            if (type === "favorites") {
+                listModalTitle.textContent = "Sevimli kitoblar";
+                if (favoritesSet.size === 0) {
+                    listModalContent.innerHTML = "<li>Sevimli kitoblar ro'yxati bo'sh</li>";
+                    return;
+                }
+                favoritesSet.forEach(id => {
+                    const book = books.find(b => b.id === id);
+                    if (book) {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <span>${escapeHtml(book.title)}</span>
+                            <button class="removeBtn" onclick="removeFromFavorites(${id})">O'chirish</button>
+                            <button class="orderBtn" onclick="openOrderModal('${escapeJs(book.title)}', ${book.price})">Buyurtma berish</button>
+                        `;
+                        listModalContent.appendChild(li);
+                    }
+                });
+            } else if (type === "cart") {
+                listModalTitle.textContent = "Savatdagi kitoblar";
+                if (cartSet.size === 0) {
+                    listModalContent.innerHTML = "<li>Savat bo'sh</li>";
+                    return;
+                }
+                cartSet.forEach(id => {
+                    const book = books.find(b => b.id === id);
+                    if (book) {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <span>${escapeHtml(book.title)}</span>
+                            <button class="removeBtn" onclick="removeFromCart(${id})">O'chirish</button>
+                            <button class="orderBtn" onclick="openOrderModal('${escapeJs(book.title)}', ${book.price})">Buyurtma berish</button>
+                        `;
+                        listModalContent.appendChild(li);
+                    }
+                });
+            }
+        }
+
+        function closeListModal() {
+            listModal.style.display = "none";
+        }
+
+        function removeFromFavorites(id) {
+            favoritesSet.delete(id);
+            renderBooks();
+            updateCounters();
+            openListModal("favorites");
+        }
+
+        function removeFromCart(id) {
+            cartSet.delete(id);
+            renderBooks();
+            updateCounters();
+            openListModal("cart");
+        }
+
+        // Orders modal: ko'rsatish, o'chirish
+        ordersBtn.addEventListener("click", () => {
+            openOrdersModal();
+        });
+
+        function openOrdersModal() {
+            const orders = loadOrdersFromStorage();
+            ordersList.innerHTML = "";
+            if (!orders || orders.length === 0) {
+                ordersList.innerHTML = "<li>Buyurtmalar mavjud emas.</li>";
+            } else {
+                for (const o of orders) {
+                    const li = document.createElement("li");
+                    const created = new Date(o.createdAt).toLocaleString();
+                    li.innerHTML = `
+                        <div>
+                            <strong>${escapeHtml(o.bookName)}</strong>
+                            <div class="order-meta">📦 ${o.bookPrice.toLocaleString()} so'm • ${created}</div>
+                            <div class="order-meta">👤 ${escapeHtml(o.customerName)} • ☎️ ${escapeHtml(o.customerPhone)}</div>
+                            <div class="order-meta">📍 ${escapeHtml(o.customerAddress)}</div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="btn-small btn-primary" onclick="repeatOrder(${o.id})">Qayta buyurtma</button>
+                            <button class="btn-small btn-danger" onclick="deleteOrder(${o.id})">O'chirish</button>
+                        </div>
+                    `;
+                    ordersList.appendChild(li);
+                }
+            }
+            ordersModal.style.display = "block";
+        }
+
+        closeOrdersBtn.addEventListener("click", () => {
+            ordersModal.style.display = "none";
+        });
+
+        clearOrdersBtn.addEventListener("click", () => {
+            if (!confirm("Barcha buyurtmalarni o'chirishni xohlaysizmi?")) return;
+            saveOrdersToStorage([]);
+            openOrdersModal();
+        });
+
+        function deleteOrder(id) {
+            let orders = loadOrdersFromStorage();
+            orders = orders.filter(o => o.id !== id);
+            saveOrdersToStorage(orders);
+            openOrdersModal();
+            showNotification("Buyurtma o'chirildi.");
+        }
+
+        function repeatOrder(id) {
+            const orders = loadOrdersFromStorage();
+            const ord = orders.find(o => o.id === id);
+            if (!ord) return;
+            openOrderModal(ord.bookName, ord.bookPrice);
+            showNotification("Buyurtma formasi to'ldirildi. Ma'lumotlarni tekshiring va yuboring.");
+        }
+
+        // Yordamchi: notifikatsiya
+        function showNotification(message) {
+            const notification = document.createElement("div");
+            notification.className = "notification";
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 2500);
+        }
+
+        // Xavfsiz JS qator kirish (bir-ikki joyda kerak bo'ladi)
+        function escapeJs(s) {
+            return String(s).replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+
+        // Qidiruv inputiga listener — har inputda yangilash
+        searchInput.addEventListener("input", () => {
+            renderBooks();
+        });
+
+        // Boshlang'ich render
+        renderBooks();
+        updateCounters();
+
+        // Qolgan funksiyalarni globalga chiqarish (onclick atributlari uchun)
+        window.toggleFavorite = toggleFavorite;
+        window.toggleCart = toggleCart;
+        window.showBookModal = showBookModal;
+        window.openOrderModal = openOrderModal;
+        window.removeFromFavorites = removeFromFavorites;
+        window.removeFromCart = removeFromCart;
+        window.openListModal = openListModal;
+        window.deleteOrder = deleteOrder;
+        window.repeatOrder = repeatOrder;
+        window.closeListModal = closeListModal;
+    </script>
+</body>
+
+</html>
